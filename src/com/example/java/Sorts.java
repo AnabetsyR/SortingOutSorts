@@ -23,30 +23,31 @@ public class Sorts
 
     /*************************************************************************
      * main The main method is the controlling method for Sorts.
-     * Preconditions: must have properly formatted data file.
-     * Postconditions: be able to create an array of data.
-     * @param args
+     * Pre-conditions: must have properly formatted data file.
+     * Post-conditions: be able to create an array of data.
+     * @param args IOException
      * @throws IOException
      ************************************************************************/
 
     //static int size;
     static int size; // size of array to be sorted
-    static int[] values;   // values to be sorted
+    static int[] values, a, b, c, d, e;   // values to be sorted
 
     public static void main(String[] args) throws IOException {
         System.out.println("Please, enter the size of the list you want to sort: ");
         Scanner sc = new Scanner(System.in);
         size = sc.nextInt();
         values = new int[size];
+        initValues();
 
         //Creates five copies for the five algorithms to be compared
-        //int[] a = copyArray(values);
-        //int[] b = copyArray(values);
-        //int[] c = copyArray(values);
-        //int[] d = copyArray(values);
-        //int[] e = copyArray(values);
+        a = copyArray(values);
+        b = copyArray(values);
+        c = copyArray(values);
+        d = copyArray(values);
+        e = copyArray(values);
 
-        initValues();
+
         printValues();
         boolean sorted = isSorted();
         //long startTime = System.currentTimeMillis();
@@ -57,23 +58,11 @@ public class Sorts
         System.out.println();
 
 
-
-        // make call to sorting method here (just remove //)
-        selectionSort();
-        //values = a;
-        bubbleSort();
-        //values = b;
-        //shortBubble();
-        insertionSort();
-        //values = c;
-        mergeSort(0, size - 1);
-        //values = d;
-        quickSort(0, size - 1);
-        //values = e;
-        //heapSort();
         for (int j = 0; j < 5; j++) {
-            algoTime(j);
+            algorithmTime(j);
         }
+
+
 
 
 
@@ -123,6 +112,8 @@ public class Sorts
     static public void printValues()
     // Prints all the values integers.
     {
+        if (values.length > 100)
+            return;
         int value;
         DecimalFormat fmt = new DecimalFormat("00");
         System.out.println("The values array is:");
@@ -457,41 +448,37 @@ public class Sorts
     }
     static int[] copyArray(int[] origArray) {
         int[] copyArray = new int[origArray.length];
-        for( int i=0; i< origArray.length; i++){
+        for( int i = 0; i < origArray.length; i++){
             copyArray[i] = origArray[i];
         }
         return copyArray;
     }
 
-    static void algoTime(int sel){
+
+
+
+    static void algorithmTime(int sel) {
         long startTime = System.currentTimeMillis();
         System.out.println("Start time: " + startTime);
 
-        //int[] a = copyArray(values);
-        //int[] b = copyArray(values);
-        //int[] c = copyArray(values);
-        //int[] d = copyArray(values);
-        //int[] e = copyArray(values);
 
-        if(sel == 0){
-            int[] a = copyArray(values);
+        if (sel == 0) {
             selectionSort();
 
-        }
-        else if(sel == 1){
-            int[] b = copyArray(values);
+        } else if (sel == 1) {
+            values = a;
             bubbleSort();
-        }
-        else if(sel == 2){
-            int[] c = copyArray(values);
+
+        } else if (sel == 2) {
+            values = b;
             insertionSort();
-        }
-        else if(sel == 3){
-            int[] d = copyArray(values);
+
+        } else if (sel == 3) {
+            values = c;
             mergeSort(0, size - 1);
-        }
-        else {
-            int[] e = copyArray(values);
+
+        } else {
+            values = d;
             quickSort(0, size - 1);
         }
 
