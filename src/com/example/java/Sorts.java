@@ -22,7 +22,7 @@ public class Sorts
 {
 
     /*************************************************************************
-     * main The main method is the controlling method for Sorts.
+     * The main method is the controlling method for Sorts.
      * Pre-conditions: must have properly formatted data file.
      * Post-conditions: be able to create an array of data.
      * @param args IOException
@@ -50,33 +50,18 @@ public class Sorts
 
         printValues();
         boolean sorted = isSorted();
-        //long startTime = System.currentTimeMillis();
-        //System.out.println("Start time: " + startTime);
-
-
         System.out.println("values is sorted: " + sorted);
         System.out.println();
 
-
+        //Loop tha iterates through the five algorithms to make it possibel to find running time
         for (int j = 0; j < 5; j++) {
             algorithmTime(j);
         }
 
 
-
-
-
-        // returns the current time in milliseconds
-        //long endTime = System.currentTimeMillis();
-        //System.out.println("End time: " + endTime);
-        //long estimatedTime = endTime - startTime;
-        //System.out.print("Running time in milliseconds = " + estimatedTime + "\n");
-
         printValues();
         System.out.println("values is sorted: " + isSorted());
         System.out.println();
-
-
     }
 
 
@@ -112,6 +97,7 @@ public class Sorts
     static public void printValues()
     // Prints all the values integers.
     {
+        //If the size of the array is less than 100, print array. Else, do not print it.
         if (values.length > 100)
             return;
         int value;
@@ -458,10 +444,11 @@ public class Sorts
 
 
     static void algorithmTime(int sel) {
-        long startTime = System.currentTimeMillis();
-        System.out.println("Start time: " + startTime);
+        //Here I used nanoTime due to its higher precision. Final values are presented in milliseconds
+        long startTime = System.nanoTime();
+        System.out.println("Start time: " + (startTime/1000000));
 
-
+        //Similar to switches, I used these sel cases to indicate which algorithm to use for sorting
         if (sel == 0) {
             selectionSort();
 
@@ -482,14 +469,12 @@ public class Sorts
             quickSort(0, size - 1);
         }
 
-        // returns the current time in milliseconds
-        long endTime = System.currentTimeMillis();
-        System.out.println("End time: " + endTime);
-        long estimatedTime = endTime - startTime;
-        System.out.print("Running time in milliseconds = " + estimatedTime + "\n");
-
+        // Finds final time and elapsed time and returns both in milliseconds
+        long endTime = System.nanoTime();
+        System.out.println("End time: " + (endTime/1000000));
+        long elapsedTime = endTime - startTime;
+        System.out.print("Running time in milliseconds = " + (elapsedTime/1000000) + "\n");
 
     }
-
-
+    
 }
