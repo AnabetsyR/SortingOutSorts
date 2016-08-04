@@ -446,35 +446,44 @@ public class Sorts
     static void algorithmTime(int sel) {
         //Here I used nanoTime due to its higher precision. Final values are presented in milliseconds
         long startTime = System.nanoTime();
-        System.out.println("Start time: " + (startTime/1000000));
+        System.out.println("Start time: " + startTime);
 
         //Similar to switches, I used these sel cases to indicate which algorithm to use for sorting
         if (sel == 0) {
+            System.out.println("Selection sort: ");
             selectionSort();
 
         } else if (sel == 1) {
             values = a;
+            System.out.println("Bubble sort: ");
             bubbleSort();
+
 
         } else if (sel == 2) {
             values = b;
+            System.out.println("Insertion sort: ");
             insertionSort();
+
 
         } else if (sel == 3) {
             values = c;
+            System.out.println("Merge sort: ");
             mergeSort(0, size - 1);
+
 
         } else {
             values = d;
+            System.out.println("Quick sort: ");
             quickSort(0, size - 1);
+
         }
 
         // Finds final time and elapsed time and returns both in milliseconds
         long endTime = System.nanoTime();
-        System.out.println("End time: " + (endTime/1000000));
+        System.out.println("End time: " + endTime);
         long elapsedTime = endTime - startTime;
         System.out.print("Running time in milliseconds = " + (elapsedTime/1000000) + "\n");
 
     }
-    
+
 }
